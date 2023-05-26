@@ -1,0 +1,66 @@
+<div class="gallery">
+  <div class="thumbnail" *ngFor="let photo of photos" (click)="openModal(photo)">
+    <img [src]="photo.url" alt="Photo">
+  </div>
+</div>
+
+<div class="moda" *ngIf="selectedPhoto">
+  <div class="modal-content" (mousedown)="onImageMouseDown($event)">
+    <img [src]="selectedPhoto.url"
+         [style.transform]="'translate(' + selectedPhoto.offsetX + 'px, ' + selectedPhoto.offsetY + 'px) scale(' + selectedPhoto.scale + ') rotate(' + selectedPhoto.rotation + 'deg)'"
+         (mousedown)="onImageMouseDown($event)" (mousemove)="onImageMouseMove($event)" (mouseup)="onImageMouseUp()">
+    <div class="controls">
+      <button (click)="zoomIn(selectedPhoto)">Zoom In</button>
+      <button (click)="zoomOut(selectedPhoto)">Zoom Out</button>
+      <button (click)="rotateLeft(selectedPhoto)">Rotate Left</button>
+      <button (click)="rotateRight(selectedPhoto)">Rotate Right</button>
+      <button (click)="resetImage(selectedPhoto)">Reset</button>
+      <button (click)="previousPhoto()" [disabled]="isFirstPhoto()">Previous</button>
+    <button (click)="nextPhoto()" [disabled]="isLastPhoto()">Next</button>
+    </div>
+  </div>
+</div> 
+
+<!-- <div class="gallery">
+  <div class="thumbnail" *ngFor="let photo of photos" (click)="openModal(photo)">
+    <img [src]="photo.url" alt="Photo">
+  </div>
+</div>
+
+<div class="controls" *ngIf="selectedPhoto">
+  <button (click)="zoomIn(selectedPhoto)">Zoom In</button>
+  <button (click)="zoomOut(selectedPhoto)">Zoom Out</button>
+  <button (click)="rotateLeft(selectedPhoto)">Rotate Left</button>
+  <button (click)="rotateRight(selectedPhoto)">Rotate Right</button>
+  <button (click)="resetImage(selectedPhoto)">Reset</button>
+</div>
+
+<!-- ****************************************************************** -->
+<!-- ****************************************************************** -->
+<!-- ****************************************************************** -->
+
+<!-- 
+<div class="gallery">
+  <div class="thumbnails">
+    <div class="thumbnail" *ngFor="let photo of photos; let i = index" (click)="selectPhoto(photo)" [class.selected]="photo === selectedPhoto">
+      <img [src]="photo.url" alt="Thumbnail">
+    </div>
+  </div>
+
+
+  <div class="nav-buttons">
+    <button (click)="previousPhoto()" [disabled]="isFirstPhoto()">Previous</button>
+    <button (click)="nextPhoto()" [disabled]="isLastPhoto()">Next</button>
+    <button (click)="zoomIn(selectedPhoto)">Zoom In</button>
+    <button (click)="zoomOut(selectedPhoto)">Zoom Out</button>
+    <button (click)="rotateLeft(selectedPhoto)">Rotate Left</button>
+    <button (click)="rotateRight(selectedPhoto)">Rotate Right</button>
+    <button (click)="resetImage(selectedPhoto)">Reset</button>
+  </div>
+</div>
+
+<div class="main-image">
+  <img [src]="selectedPhoto.url" alt="Main Image" [style.transform]="'scale(' + selectedPhoto.scale + ') rotate(' + selectedPhoto.rotation + 'deg)'"
+    [style.left.px]="selectedPhoto.offsetX" [style.top.px]="selectedPhoto.offsetY" (mousedown)="onImageMouseDown($event)">
+  
+</div> -->
